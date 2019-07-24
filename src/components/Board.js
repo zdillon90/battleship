@@ -28,20 +28,21 @@ function Board() {
       <Container>
         <Row>
           {(function() {
-            const rows = [];
+            const cols = [];
             for (let i = 0; i < 10; i += 1) {
-              rows.push(<Block key={i}>&nbsp;&nbsp;</Block>);
+              cols.push(
+                <Row>
+                  {(function() {
+                    const rows = [];
+                    for (let x = 0; x < 10; x += 1) {
+                      rows.push(<Block key={x}>&nbsp;&nbsp;&nbsp;</Block>);
+                    }
+                    return rows;
+                  })()}
+                </Row>
+              );
             }
-            return rows;
-          })()}
-        </Row>
-        <Row>
-          {(function() {
-            const rows = [];
-            for (let i = 0; i < 10; i += 1) {
-              rows.push(<Block key={i}>&nbsp;&nbsp;</Block>);
-            }
-            return rows;
+            return cols;
           })()}
         </Row>
       </Container>
