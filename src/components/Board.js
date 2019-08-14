@@ -35,6 +35,7 @@ function Board() {
                   {(function() {
                     const rows = [];
                     for (let x = 0; x < 10; x += 1) {
+                      // push iteration from here
                       rows.push(<Block key={x}>&nbsp;&nbsp;&nbsp;</Block>);
                     }
                     return rows;
