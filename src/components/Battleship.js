@@ -1,15 +1,29 @@
 import React from 'react';
 
 import { createBoard } from '../gameHelpers';
+import {
+  StyledBattleshipWrapper,
+  StyledBattleship,
+} from './styles/StyledBattleship';
 
 // Components
 import Board from './Board';
+import Display from './Display';
+import StartButton from './StartButton';
 
 function Battleship() {
   return (
-    <div>
-      <Board board={createBoard()} />
-    </div>
+    <StyledBattleshipWrapper>
+      <StyledBattleship>
+        <Board board={createBoard()} />
+        <aside>
+          <div>
+            <Display text="Score" />
+          </div>
+          <StartButton />
+        </aside>
+      </StyledBattleship>
+    </StyledBattleshipWrapper>
   );
 }
 
