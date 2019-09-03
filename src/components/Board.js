@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { StyledBoard } from './styles/StyledBoard';
+
 import Block from './Block';
 
 const Board = ({ board }) => (
@@ -13,9 +15,9 @@ const Board = ({ board }) => (
   //   display: table-row;
   // `;
 
-  <div>
+  <StyledBoard width={board[0].length} height={board.length}>
     {board.map(row => row.map((block, x) => <Block key={x} type={[0]} />))}
-  </div>
+  </StyledBoard>
 );
 
 export default Board;
