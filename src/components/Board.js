@@ -3,9 +3,13 @@ import { StyledBoard } from './styles/StyledBoard';
 
 import Block from './Block';
 
-const Board = ({ board }) => (
+const Board = ({ board, blockPressed }) => (
   <StyledBoard width={board[0].length} height={board.length}>
-    {board.map(row => row.map((block, x) => <Block key={x} type={[0]} />))}
+    {board.map(row =>
+      row.map((block, x) => (
+        <Block blockPressed={blockPressed} key={x} type={[0]} />
+      ))
+    )}
   </StyledBoard>
 );
 
