@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { createBoard } from '../gameHelpers';
+
+// Styled Components
 import {
   StyledBattleshipWrapper,
   StyledBattleship,
@@ -18,6 +20,7 @@ function Battleship() {
         <Board board={createBoard()} />
         <aside>
           <div>
+            <Display text="Status" />
             <Display text="Score" />
           </div>
           <StartButton />
