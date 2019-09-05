@@ -18,11 +18,20 @@ import StartButton from './StartButton';
 
 function Battleship() {
   const [gameOver, setGameOver] = useState(false);
+  const [gameStarted, setGameStarted] = useState({
+    status: false,
+    statusText: 'Press Start',
+  });
   const [board, setBoard] = useBoard();
 
   const startGame = () => {
     console.log('Start Game');
-    // setBoard(createBoard());
+    // place ships after start button is pressed
+    setGameStarted({
+      status: true,
+      statusText: 'Enemy is Placing Ships',
+    });
+    // I want to engage styling of the blocks here
   };
 
   const clickBlock = () => {
@@ -32,13 +41,17 @@ function Battleship() {
   return (
     <StyledBattleshipWrapper>
       <StyledBattleship>
-        <Board board={board} blockPressed={clickBlock} />
+        <Board
+          clickable={gameStarted.status}
+          board={board}
+          blockPressed={clickBlock}
+        />
         <aside>
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
             <div>
-              <Display text="Status" />
+              <Display text={`Status: ${gameStarted.statusText}`} />
               <Display text="Shots" />
               <Display text="Score" />
             </div>
