@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import bgImage from '../../img/bg.jpg';
-
 export const StyledBattleshipWrapper = styled.div`
   width: 100vw;
   height: 100vh;

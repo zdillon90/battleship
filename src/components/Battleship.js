@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { useStoreState } from 'easy-peasy';
 import { createBoard } from '../gameHelpers';
 
 // Styled Components
@@ -17,27 +18,39 @@ import Display from './Display';
 import StartButton from './StartButton';
 
 function Battleship() {
+  // Game State
   const [gameOver, setGameOver] = useState(false);
   const [gameStarted, setGameStarted] = useState({
     status: false,
     statusText: 'Press Start',
   });
   const [board, setBoard] = useBoard();
+  const ships = useStoreState(state => state.ships);
 
+  // Game functions
   const startGame = () => {
-    console.log('Start Game');
-    // place ships after start button is pressed
     setGameStarted({
       status: true,
       statusText: 'Enemy is Placing Ships',
     });
-    // I want to engage styling of the blocks here
+    // Loop through the blocks here
+    console.log(board);
+    // random statement to choose between Vertical and Horizontal
+    const chosenValue = Math.random() < 0.5 ? 'vertical' : 'horizontal';
+    console.log(chosenValue);
+    console.log(ships);
+    // If Horizontal than pick a starting row and then
+    // Loop over the same number in that row
+    // If Vertical pick a random row and length of ship to place.
+    // The ship has a starting block (top for v, left for h)
+    // The length of the ship must fit on the board from the start position
   };
 
   const clickBlock = () => {
     console.log('Block Pressed');
   };
 
+  // Render
   return (
     <StyledBattleshipWrapper>
       <StyledBattleship>
