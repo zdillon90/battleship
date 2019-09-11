@@ -26,12 +26,11 @@ function Battleship() {
   });
   const [board, setBoard] = useBoard();
   const ships = useStoreState(state => state.ships);
-  const updateShipLocations = useStoreActions(
-    actions => actions.ships.Carrier.changePosition
-  );
+  const addShip = useStoreActions(actions => actions.ships.addShip);
 
   // Game functions
   const startGame = () => {
+    // add the ships to state with random cords
     setGameStarted({
       status: true,
       statusText: 'Enemy is Placing Ships',
@@ -42,8 +41,13 @@ function Battleship() {
     const chosenValue = Math.random() < 0.5 ? 'vertical' : 'horizontal';
     console.log(chosenValue);
     console.log(ships.Carrier);
-    updateShipLocations(6);
-    console.log(ships.Carrier.positionRow);
+    addShip({
+      name: 'Carrier',
+      blocks: ['C', 'C', 'C', 'C', 'C'],
+      color: '128, 128, 128',
+      positionRow: 5,
+      positionColum: 6,
+    });
     // If Horizontal than pick a starting row and then
     // Loop over the same number in that row
     // If Vertical pick a random row and length of ship to place.
