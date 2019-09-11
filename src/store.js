@@ -1,4 +1,4 @@
-import { createStore } from 'easy-peasy';
+import { createStore, action } from 'easy-peasy';
 
 const shipsModel = {
   Carrier: {
@@ -6,6 +6,9 @@ const shipsModel = {
     color: '128, 128, 128',
     positionRow: 0,
     positionColum: 0,
+    changePosition: action((state, payload) => {
+      state.positionRow = payload;
+    }),
   },
   Battleship: {
     blocks: ['B', 'B', 'B', 'B'],

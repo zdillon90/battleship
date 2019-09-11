@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useStoreState } from 'easy-peasy';
+import { useStoreState, useStoreActions } from 'easy-peasy';
 import { createBoard } from '../gameHelpers';
 
 // Styled Components
@@ -26,6 +26,9 @@ function Battleship() {
   });
   const [board, setBoard] = useBoard();
   const ships = useStoreState(state => state.ships);
+  const updateShipLocations = useStoreActions(
+    actions => actions.ships.Carrier.changePosition
+  );
 
   // Game functions
   const startGame = () => {
@@ -38,7 +41,9 @@ function Battleship() {
     // random statement to choose between Vertical and Horizontal
     const chosenValue = Math.random() < 0.5 ? 'vertical' : 'horizontal';
     console.log(chosenValue);
-    console.log(ships);
+    console.log(ships.Carrier);
+    updateShipLocations(6);
+    console.log(ships.Carrier.positionRow);
     // If Horizontal than pick a starting row and then
     // Loop over the same number in that row
     // If Vertical pick a random row and length of ship to place.
