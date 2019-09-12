@@ -28,6 +28,23 @@ function Battleship() {
   const ships = useStoreState(state => state.ships);
   const addShip = useStoreActions(actions => actions.ships.addShip);
 
+  const makeShip = (name, direction) => {
+    let blockNumber = null;
+    if (name === 'Carrier') {
+      blockNumber = 5;
+    } else if (name === 'Battleship') {
+      blockNumber = 4;
+    } else if (name === 'Destroyer' || name === 'Submarine') {
+      blockNumber = 3;
+    } else if (name === 'Patrol Boat') {
+      blockNumber = 2;
+    }
+    console.log(blockNumber);
+    const blockLetter = name.substring(0, 1);
+    const blocks = [];
+    // for (let i = 0; i < blockNumber; i += 1) {}
+  };
+
   // Game functions
   const startGame = () => {
     // add the ships to state with random cords
@@ -40,7 +57,6 @@ function Battleship() {
     // random statement to choose between Vertical and Horizontal
     const chosenValue = Math.random() < 0.5 ? 'vertical' : 'horizontal';
     console.log(chosenValue);
-    console.log(ships.Carrier);
     addShip({
       name: 'Carrier',
       blocks: ['C', 'C', 'C', 'C', 'C'],
@@ -48,6 +64,7 @@ function Battleship() {
       positionRow: 5,
       positionColum: 6,
     });
+    makeShip('Carrier');
     // If Horizontal than pick a starting row and then
     // Loop over the same number in that row
     // If Vertical pick a random row and length of ship to place.
