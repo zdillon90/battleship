@@ -28,7 +28,15 @@ function Battleship() {
   const ships = useStoreState(state => state.ships);
   const addShip = useStoreActions(actions => actions.ships.addShip);
 
-  const makeShip = (name, direction) => {
+  // Game Functions
+  const getRandomInt = (min, max) => {
+    const newMin = Math.ceil(min);
+    const newMax = Math.floor(max);
+    return Math.floor(Math.random() * (newMax - newMin + 1)) + newMin;
+  };
+
+  const makeShip = name => {
+    const shipDirection = Math.random() < 0.5 ? 'vertical' : 'horizontal';
     let blockNumber = null;
     if (name === 'Carrier') {
       blockNumber = 5;
@@ -40,36 +48,50 @@ function Battleship() {
       blockNumber = 2;
     }
     console.log(blockNumber);
-    const blockLetter = name.substring(0, 1);
     const blocks = [];
-    // for (let i = 0; i < blockNumber; i += 1) {}
+    for (let i = 0; i < blockNumber; i += 1) {
+      blocks.push(name.substring(0, 1));
+    }
+    console.log(blocks);
+    // For them not to overlap I haft to mark the blocks with the
+    // current ship and do a check, if it hits a block on creation
+    // it starts over on the entire placement.
+    let positionRow = null;
+    let positionColum = null;
+    if (shipDirection === 'vertical') {
+      positionRow = getRandomInt(0, 10 - blockNumber);
+      positionColum = getRandomInt(0, 10);
+    } else if (shipDirection === 'horizontal') {
+      positionRow = getRandomInt(0, 10);
+      positionColum = getRandomInt(0, 10 - blockNumber);
+    }
+    const ship = {
+      name,
+      blocks,
+      color: '128, 128, 128',
+      shipDirection,
+      positionRow,
+      positionColum,
+    };
+    return ship;
   };
 
-  // Game functions
   const startGame = () => {
-    // add the ships to state with random cords
+    const shipNames = [
+      'Carrier',
+      'Battleship',
+      'Destroyer',
+      'Submarine',
+      'Patrol Boat',
+    ];
     setGameStarted({
       status: true,
       statusText: 'Enemy is Placing Ships',
     });
-    // Loop through the blocks here
-    console.log(board);
-    // random statement to choose between Vertical and Horizontal
-    const chosenValue = Math.random() < 0.5 ? 'vertical' : 'horizontal';
-    console.log(chosenValue);
-    addShip({
-      name: 'Carrier',
-      blocks: ['C', 'C', 'C', 'C', 'C'],
-      color: '128, 128, 128',
-      positionRow: 5,
-      positionColum: 6,
+    shipNames.forEach(shipName => {
+      const ship = makeShip(shipName);
+      addShip(ship);
     });
-    makeShip('Carrier');
-    // If Horizontal than pick a starting row and then
-    // Loop over the same number in that row
-    // If Vertical pick a random row and length of ship to place.
-    // The ship has a starting block (top for v, left for h)
-    // The length of the ship must fit on the board from the start position
   };
 
   const clickBlock = () => {
