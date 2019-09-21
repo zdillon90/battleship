@@ -64,6 +64,7 @@ function Battleship() {
       startPositionColum = getRandomInt(0, 10 - blockNumber);
     }
     const blocks = [];
+    let blockCount = 0;
     for (let i = 0; i < blockNumber; i += 1) {
       // If the block is the first then use the start position
       const block = {};
@@ -73,12 +74,15 @@ function Battleship() {
         block.colum = startPositionColum;
       } else if (i !== 0 && shipDirection === 'vertical') {
         // vertical, block has to be one lower than the last
+        block.row = startPositionRow + blockCount;
+        block.colum = startPositionColum;
       } else if (i !== 0 && shipDirection === 'horizontal') {
         // horizontal, block has to be one right right than the last
+        block.row = startPositionRow;
+        block.colum = startPositionColum + blockCount;
       }
-      block.row = null;
-      block.colum = null;
       blocks.push(block);
+      blockCount += 1;
     }
     const ship = {
       name,
