@@ -5,6 +5,7 @@ export const StyledBattleshipWrapper = styled.div`
   height: 100vh;
   background-size: cover;
   overflow: hidden;
+  background-color: #0f111a;
 `;
 
 export const StyledBattleship = styled.div`

@@ -66,18 +66,15 @@ function Battleship() {
     const blocks = [];
     let blockCount = 0;
     for (let i = 0; i < blockNumber; i += 1) {
-      // If the block is the first then use the start position
       const block = {};
       block.letter = name.substring(0, 1);
       if (i === 0) {
         block.row = startPositionRow;
         block.colum = startPositionColum;
       } else if (i !== 0 && shipDirection === 'vertical') {
-        // vertical, block has to be one lower than the last
         block.row = startPositionRow + blockCount;
         block.colum = startPositionColum;
       } else if (i !== 0 && shipDirection === 'horizontal') {
-        // horizontal, block has to be one right right than the last
         block.row = startPositionRow;
         block.colum = startPositionColum + blockCount;
       }
@@ -107,8 +104,41 @@ function Battleship() {
       status: true,
       statusText: 'Enemy is Placing Ships',
     });
+    const blockCheck = [];
     shipNames.forEach(shipName => {
       const ship = makeShip(shipName);
+      ship.blocks.forEach(block => {
+        blockCheck.unshift(block);
+      });
+      const numberOfBlocks = ship.blocks.length;
+      console.log(numberOfBlocks);
+      blockCheck.forEach(checkBlock => {
+        let i = 0;
+        ship.blocks.forEach(shipBlock => {
+          console.log('i: ', i);
+          if (
+            i < numberOfBlocks &&
+            shipBlock.row === checkBlock.row &&
+            shipBlock.colum === checkBlock.colum
+          ) {
+            console.log('Block taken up');
+            console.log(`Ship Row: ${shipBlock.row}`);
+            console.log(`Check Row: ${checkBlock.row}`);
+            console.log(`Ship Column: ${shipBlock.colum}`);
+            console.log(`Check Column: ${checkBlock.colum}`);
+            // Remake Ship
+          } else {
+            console.log('clear');
+          }
+          i += 1;
+        });
+
+        // add to begining of list and skip the numberOfBlocks
+        // need to check all the ship blocks
+        // Use block[1] style
+      });
+      console.log(blockCheck);
+      console.log(ship.blocks);
       // check ship here before adding it
       addShip(ship);
     });
