@@ -107,36 +107,38 @@ function Battleship() {
     const blockCheck = [];
     shipNames.forEach(shipName => {
       const ship = makeShip(shipName);
+      const currentShipLetter = shipName.substring(0, 1);
       ship.blocks.forEach(block => {
         blockCheck.unshift(block);
       });
       const numberOfBlocks = ship.blocks.length;
       console.log(numberOfBlocks);
-      blockCheck.forEach(checkBlock => {
-        let i = 0;
-        ship.blocks.forEach(shipBlock => {
-          console.log('i: ', i);
+      for (let i = 0; i < blockCheck.length; i += 1) {
+        if (i < numberOfBlocks) {
+          console.log('skip');
+        }
+        // console.log(blockCheck[i]);
+        for (let x = 0; x < ship.blocks.length; x += 1) {
+          // console.log('i: ', i);
+          const shipBlock = ship.blocks[x];
           if (
-            i < numberOfBlocks &&
-            shipBlock.row === checkBlock.row &&
-            shipBlock.colum === checkBlock.colum
+            currentShipLetter !== blockCheck[i].letter &&
+            shipBlock.row === blockCheck[i].row &&
+            shipBlock.colum === blockCheck[i].colum
           ) {
             console.log('Block taken up');
             console.log(`Ship Row: ${shipBlock.row}`);
-            console.log(`Check Row: ${checkBlock.row}`);
+            console.log(`Check Row: ${blockCheck[i].row}`);
             console.log(`Ship Column: ${shipBlock.colum}`);
-            console.log(`Check Column: ${checkBlock.colum}`);
+            console.log(`Check Column: ${blockCheck[i].colum}`);
             // Remake Ship
-          } else {
-            console.log('clear');
           }
-          i += 1;
-        });
+        }
+      }
+      // add to begining of list and skip the numberOfBlocks
+      // need to check all the ship blocks
+      // Use block[1] style
 
-        // add to begining of list and skip the numberOfBlocks
-        // need to check all the ship blocks
-        // Use block[1] style
-      });
       console.log(blockCheck);
       console.log(ship.blocks);
       // check ship here before adding it
