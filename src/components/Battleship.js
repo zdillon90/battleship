@@ -105,17 +105,19 @@ function Battleship() {
       statusText: 'Enemy is Placing Ships',
     });
     const blockCheck = [];
-    shipNames.forEach(shipName => {
-      const ship = makeShip(shipName);
-      const currentShipLetter = shipName.substring(0, 1);
+    // change to a for loop
+    for (let s = 0; s < shipNames.length; s += 1) {
+      console.log(shipNames[s]);
+      const ship = makeShip(shipNames[s]);
+      const currentShipLetter = shipNames[s].substring(0, 1);
       ship.blocks.forEach(block => {
         blockCheck.unshift(block);
       });
       const numberOfBlocks = ship.blocks.length;
-      console.log(numberOfBlocks);
+      // console.log(numberOfBlocks);
       for (let i = 0; i < blockCheck.length; i += 1) {
         if (i < numberOfBlocks) {
-          console.log('skip');
+          // console.log('skip');
         }
         // console.log(blockCheck[i]);
         for (let x = 0; x < ship.blocks.length; x += 1) {
@@ -131,7 +133,12 @@ function Battleship() {
             console.log(`Check Row: ${blockCheck[i].row}`);
             console.log(`Ship Column: ${shipBlock.colum}`);
             console.log(`Check Column: ${blockCheck[i].colum}`);
+            shipBlock.clear = false;
+            s -= 1;
             // Remake Ship
+            // If it fails add the ship back into the shipNames list
+          } else {
+            shipBlock.clear = true;
           }
         }
       }
@@ -141,9 +148,10 @@ function Battleship() {
 
       console.log(blockCheck);
       console.log(ship.blocks);
+      console.log(shipNames);
       // check ship here before adding it
       addShip(ship);
-    });
+    }
   };
 
   const clickBlock = () => {
