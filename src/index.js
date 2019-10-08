@@ -6,15 +6,17 @@ import store from './store';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+require('dotenv').config();
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyBAXSrRjyflBJQiECJ8J-ZMaKKGfV2H8FI',
+  apiKey: process.env.APIKEY,
   authDomain: 'battleship-d697e.firebaseapp.com',
   databaseURL: 'https://battleship-d697e.firebaseio.com',
   projectId: 'battleship-d697e',
   storageBucket: '',
   messagingSenderId: '623731397978',
-  appId: '1:623731397978:web:d85fb6a20393432ff28f63',
-  measurementId: 'G-4PNKHXTM92',
+  appId: '1:623731397978:web:8c130d3f0ca58c2bf28f63',
+  measurementId: 'G-VS7LB3B941',
 };
 firebase.initializeApp(firebaseConfig);
 

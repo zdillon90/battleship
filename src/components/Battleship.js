@@ -35,10 +35,6 @@ function Battleship() {
     return Math.floor(Math.random() * (newMax - newMin + 1)) + newMin;
   };
 
-  const checkShipPalcement = () => {
-    // Check to see if block is filled first
-  };
-
   const makeShip = name => {
     const shipDirection = Math.random() < 0.5 ? 'vertical' : 'horizontal';
     let blockNumber = null;
@@ -51,9 +47,6 @@ function Battleship() {
     } else if (name === 'Patrol Boat') {
       blockNumber = 2;
     }
-    // For them not to overlap I haft to mark the blocks with the
-    // current ship and do a check, if it hits a block on creation
-    // it starts over on the entire placement.
     let startPositionRow = null;
     let startPositionColum = null;
     if (shipDirection === 'vertical') {
@@ -105,11 +98,9 @@ function Battleship() {
       statusText: 'Enemy is Placing Ships',
     });
     const blockCheck = [];
-    // change to a for loop
     for (let s = 0; s < shipNames.length; s += 1) {
       console.log(shipNames[s]);
       const ship = makeShip(shipNames[s]);
-      // ship.clear = false;
       const currentShipLetter = shipNames[s].substring(0, 1);
       ship.blocks.forEach(block => {
         blockCheck.unshift(block);
@@ -123,22 +114,8 @@ function Battleship() {
             shipBlock.colum === blockCheck[i].colum
           ) {
             console.log('Block taken up');
-            console.log(`Ship Row: ${shipBlock.row}`);
-            console.log(`Check Row: ${blockCheck[i].row}`);
-            console.log(`Ship Column: ${shipBlock.colum}`);
-            console.log(`Check Column: ${blockCheck[i].colum}`);
-            // shipBlock.clear = false;
             ship.blocked = true;
-            // s -= 1;
-            // console.log(shipBlock.clear);
-            // If it fails don't remove it from the list
-          } else {
-            // If the ship is cleared to place, remove it from the list
-            // ship.clear = true; // So all of the other bocks that are not colliding make this true
-            // shipNames.slice(shipNames.pop(s));
           }
-          // Need to loop through each of the blocks of the new ship in question and see if any
-          // are not clear and if true than keep the ship on the list
         }
       }
       if (ship.blocked) {
@@ -146,14 +123,6 @@ function Battleship() {
       } else {
         addShip(ship);
       }
-      // add to beginning of list and skip the numberOfBlocks
-      // need to check all the ship blocks
-      // Use block[1] style
-
-      // console.log(blockCheck);
-      console.log(ship);
-      console.log(shipNames);
-      // check ship here before adding it
     }
   };
 
