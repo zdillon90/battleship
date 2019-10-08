@@ -85,18 +85,7 @@ function Battleship() {
     return ship;
   };
 
-  const startGame = () => {
-    const shipNames = [
-      'Carrier',
-      'Battleship',
-      'Destroyer',
-      'Submarine',
-      'Patrol Boat',
-    ];
-    setGameStarted({
-      status: true,
-      statusText: 'Enemy is Placing Ships',
-    });
+  const placeShips = shipNames => {
     const blockCheck = [];
     for (let s = 0; s < shipNames.length; s += 1) {
       console.log(shipNames[s]);
@@ -126,6 +115,22 @@ function Battleship() {
     }
   };
 
+  const startGame = () => {
+    const shipNames = [
+      'Carrier',
+      'Battleship',
+      'Destroyer',
+      'Submarine',
+      'Patrol Boat',
+    ];
+    setGameStarted({
+      status: true,
+      statusText: 'Enemy is Placing Ships',
+    });
+    placeShips(shipNames);
+    // TODO: route ships to locations
+  };
+
   const clickBlock = () => {
     console.log('Block Pressed');
   };
@@ -149,7 +154,7 @@ function Battleship() {
               <Display text="Score" />
             </div>
           )}
-          <StartButton callback={startGame} />
+          <StartButton clicked={gameStarted.status} callback={startGame} />
         </aside>
       </StyledBattleship>
     </StyledBattleshipWrapper>
