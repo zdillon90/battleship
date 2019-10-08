@@ -109,19 +109,13 @@ function Battleship() {
     for (let s = 0; s < shipNames.length; s += 1) {
       console.log(shipNames[s]);
       const ship = makeShip(shipNames[s]);
+      // ship.clear = false;
       const currentShipLetter = shipNames[s].substring(0, 1);
       ship.blocks.forEach(block => {
         blockCheck.unshift(block);
       });
-      const numberOfBlocks = ship.blocks.length;
-      // console.log(numberOfBlocks);
       for (let i = 0; i < blockCheck.length; i += 1) {
-        if (i < numberOfBlocks) {
-          // console.log('skip');
-        }
-        // console.log(blockCheck[i]);
         for (let x = 0; x < ship.blocks.length; x += 1) {
-          // console.log('i: ', i);
           const shipBlock = ship.blocks[x];
           if (
             currentShipLetter !== blockCheck[i].letter &&
@@ -133,24 +127,33 @@ function Battleship() {
             console.log(`Check Row: ${blockCheck[i].row}`);
             console.log(`Ship Column: ${shipBlock.colum}`);
             console.log(`Check Column: ${blockCheck[i].colum}`);
-            shipBlock.clear = false;
-            s -= 1;
-            // Remake Ship
-            // If it fails add the ship back into the shipNames list
+            // shipBlock.clear = false;
+            ship.blocked = true;
+            // s -= 1;
+            // console.log(shipBlock.clear);
+            // If it fails don't remove it from the list
           } else {
-            shipBlock.clear = true;
+            // If the ship is cleared to place, remove it from the list
+            // ship.clear = true; // So all of the other bocks that are not colliding make this true
+            // shipNames.slice(shipNames.pop(s));
           }
+          // Need to loop through each of the blocks of the new ship in question and see if any
+          // are not clear and if true than keep the ship on the list
         }
       }
-      // add to begining of list and skip the numberOfBlocks
+      if (ship.blocked) {
+        s -= 1;
+      } else {
+        addShip(ship);
+      }
+      // add to beginning of list and skip the numberOfBlocks
       // need to check all the ship blocks
       // Use block[1] style
 
-      console.log(blockCheck);
-      console.log(ship.blocks);
+      // console.log(blockCheck);
+      console.log(ship);
       console.log(shipNames);
       // check ship here before adding it
-      addShip(ship);
     }
   };
 
