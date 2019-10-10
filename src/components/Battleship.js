@@ -129,6 +129,14 @@ function Battleship() {
     });
     placeShips(shipNames);
     // TODO: route ships to locations
+    // routeShips()
+    console.log(board);
+    for (let r = 0; r < board.length; r += 1) {
+      console.log('r', r);
+      for (let c = 0; c < board[r].length; c += 1) {
+        console.log('c', c);
+      }
+    }
   };
 
   const clickBlock = () => {
