@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-import { useStoreState, useStoreActions } from 'easy-peasy';
+// import { useStoreState, useStoreActions } from 'easy-peasy';
+// TODO: Remove Easy Peasy and describe why you want to remove it for future
+// notes. Interview: what did you do that didn't work out the way you planned.
 import { createBoard } from '../gameHelpers';
 
 // Styled Components
@@ -25,8 +27,10 @@ function Battleship() {
     statusText: 'Press Start',
   });
   const [board, setBoard] = useBoard();
-  const ships = useStoreState(state => state.ships);
-  const addShip = useStoreActions(actions => actions.ships.addShip);
+  // const ships = useStoreState(state => state.ships.shipList);
+  // const [ships, setShips] = useState();
+  // const shipsNum = useStoreState(state => state.ships.shipList.length);
+  // const addShip = useStoreActions(actions => actions.ships.addShip);
 
   // Game Functions
   const getRandomInt = (min, max) => {
@@ -86,6 +90,7 @@ function Battleship() {
   };
 
   const placeShips = shipNames => {
+    const shipObjects = [];
     const blockCheck = [];
     for (let s = 0; s < shipNames.length; s += 1) {
       console.log(shipNames[s]);
@@ -110,9 +115,10 @@ function Battleship() {
       if (ship.blocked) {
         s -= 1;
       } else {
-        addShip(ship);
+        shipObjects.push(ship);
       }
     }
+    return shipObjects;
   };
 
   const startGame = () => {
@@ -127,14 +133,19 @@ function Battleship() {
       status: true,
       statusText: 'Enemy is Placing Ships',
     });
-    placeShips(shipNames);
+    const shipList = placeShips(shipNames);
     // TODO: route ships to locations
     // routeShips()
     console.log(board);
+    console.log(shipList);
     for (let r = 0; r < board.length; r += 1) {
       console.log('r', r);
+      // If statement to see if r matches any of the blocks
+      // for (let s = 0; s < shipsNum; s += 1) {
+      //   console.log('test');
+      // }
       for (let c = 0; c < board[r].length; c += 1) {
-        console.log('c', c);
+        // console.log('c', c);
       }
     }
   };

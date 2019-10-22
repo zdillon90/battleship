@@ -1,16 +1,14 @@
 import { createStore, action } from 'easy-peasy';
 
 const shipsModel = {
-  shipOptions: [],
-  addShip: action((state, payload) => {
-    state.shipOptions.push(payload);
-  }),
+  ships: {
+    shipList: [],
+    addShip: action((state, payload) => {
+      state.shipList.push(payload);
+    }),
+  },
 };
 
-const storeModel = {
-  ships: shipsModel,
-};
-
-const store = createStore(storeModel);
+const store = createStore(shipsModel);
 
 export default store;
