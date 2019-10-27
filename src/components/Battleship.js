@@ -54,11 +54,11 @@ function Battleship() {
     let startPositionRow = null;
     let startPositionColum = null;
     if (shipDirection === 'vertical') {
-      startPositionRow = getRandomInt(0, 10 - blockNumber);
-      startPositionColum = getRandomInt(0, 10);
+      startPositionRow = getRandomInt(0, 9 - blockNumber);
+      startPositionColum = getRandomInt(0, 9);
     } else if (shipDirection === 'horizontal') {
-      startPositionRow = getRandomInt(0, 10);
-      startPositionColum = getRandomInt(0, 10 - blockNumber);
+      startPositionRow = getRandomInt(0, 9);
+      startPositionColum = getRandomInt(0, 9 - blockNumber);
     }
     const blocks = [];
     let blockCount = 0;
@@ -138,14 +138,13 @@ function Battleship() {
     // routeShips()
     console.log(board);
     console.log(shipList);
-    for (let r = 0; r < board.length; r += 1) {
-      console.log('r', r);
-      // If statement to see if r matches any of the blocks
-      // for (let s = 0; s < shipsNum; s += 1) {
-      //   console.log('test');
-      // }
-      for (let c = 0; c < board[r].length; c += 1) {
-        // console.log('c', c);
+    console.log(board[1][2]);
+    for (let s = 0; s < shipList.length; s += 1) {
+      // console.log(shipList[s].name);
+      for (let b = 0; b < shipList[s].blocks.length; b += 1) {
+        const blockRow = shipList[s].blocks[b].row;
+        const blockColum = shipList[s].blocks[b].colum;
+        board[blockRow][blockColum] = [1, shipList[s].name];
       }
     }
   };
