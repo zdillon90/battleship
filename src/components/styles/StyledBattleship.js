@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
-import bgImage from '../../img/bg.jpg';
-
 export const StyledBattleshipWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background: url(${bgImage}) #000;
   background-size: cover;
   overflow: hidden;
+  background-color: #0f111a;
 `;
 
 export const StyledBattleship = styled.div`
