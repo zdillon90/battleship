@@ -2,12 +2,12 @@ import React from 'react';
 import { StyledBlock } from './styles/StyledBlock';
 import { SHIPS } from '../ships';
 
-const Block = ({ type, blockPressed, clickable }) => (
+const Block = ({ type, blockPressed, clickable, ship }) => (
   <StyledBlock
     clickable={clickable}
     onClick={blockPressed}
     type={type}
-    color={SHIPS[type].color}
+    color={ship === 'clear' ? SHIPS[type].color : '128, 128, 128'}
   />
 );
 

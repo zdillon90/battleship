@@ -138,15 +138,16 @@ function Battleship() {
     // routeShips()
     console.log(board);
     console.log(shipList);
-    console.log(board[1][2]);
+    const newBoard = createBoard();
     for (let s = 0; s < shipList.length; s += 1) {
-      // console.log(shipList[s].name);
       for (let b = 0; b < shipList[s].blocks.length; b += 1) {
         const blockRow = shipList[s].blocks[b].row;
         const blockColum = shipList[s].blocks[b].colum;
-        board[blockRow][blockColum] = [1, shipList[s].name];
+        newBoard[blockRow][blockColum] = [1, shipList[s].name];
       }
     }
+    console.log(newBoard);
+    setBoard(newBoard);
   };
 
   const clickBlock = () => {
