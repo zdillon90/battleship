@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-
-// import { useStoreState, useStoreActions } from 'easy-peasy';
-// TODO: Remove Easy Peasy and describe why you want to remove it for future
-// notes. Interview: what did you do that didn't work out the way you planned.
 import { createBoard } from '../gameHelpers';
 
 // Styled Components
@@ -10,9 +6,6 @@ import {
   StyledBattleshipWrapper,
   StyledBattleship,
 } from './styles/StyledBattleship';
-
-// Custom Hooks
-import { useBoard } from '../hooks/useBoard';
 
 // Components
 import Board from './Board';
@@ -26,11 +19,7 @@ function Battleship() {
     status: false,
     statusText: 'Press Start',
   });
-  const [board, setBoard] = useBoard();
-  // const ships = useStoreState(state => state.ships.shipList);
-  // const [ships, setShips] = useState();
-  // const shipsNum = useStoreState(state => state.ships.shipList.length);
-  // const addShip = useStoreActions(actions => actions.ships.addShip);
+  const [board, setBoard] = useState(createBoard());
 
   // Game Functions
   const getRandomInt = (min, max) => {
@@ -134,7 +123,6 @@ function Battleship() {
       statusText: 'Enemy is Placing Ships',
     });
     const shipList = placeShips(shipNames);
-    // TODO: route ships to locations
     // routeShips()
     console.log(board);
     console.log(shipList);
