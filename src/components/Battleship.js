@@ -20,6 +20,7 @@ function Battleship() {
     statusText: 'Press Start',
   });
   const [board, setBoard] = useState(createBoard());
+  // TODO: Add a mode here for Salvo variation
 
   // Game Functions
   const getRandomInt = (min, max) => {
@@ -110,20 +111,7 @@ function Battleship() {
     return shipObjects;
   };
 
-  const startGame = () => {
-    const shipNames = [
-      'Carrier',
-      'Battleship',
-      'Destroyer',
-      'Submarine',
-      'Patrol Boat',
-    ];
-    setGameStarted({
-      status: true,
-      statusText: 'Enemy is Placing Ships',
-    });
-    const shipList = placeShips(shipNames);
-    // routeShips()
+  const routeShips = shipList => {
     console.log(board);
     console.log(shipList);
     const newBoard = createBoard();
@@ -138,8 +126,24 @@ function Battleship() {
     setBoard(newBoard);
   };
 
-  const clickBlock = () => {
-    console.log('Block Pressed');
+  const startGame = () => {
+    const shipNames = [
+      'Carrier',
+      'Battleship',
+      'Destroyer',
+      'Submarine',
+      'Patrol Boat',
+    ];
+    setGameStarted({
+      status: true,
+      statusText: 'Enemy is Placing Ships',
+    });
+    const shipList = placeShips(shipNames);
+    routeShips(shipList);
+  };
+
+  const clickBlock = id => {
+    console.log('Block Pressed!', id);
   };
 
   // Render

@@ -11,7 +11,7 @@ const Board = ({ board, blockPressed, clickable }) => (
           clickable={clickable}
           blockPressed={blockPressed}
           key={x}
-          type={[0]}
+          type={block[0]}
           ship={block[1]}
           // Add the property here if there is a ship taking the block
         />
