@@ -9,7 +9,7 @@ const Board = ({ board, blockPressed, clickable }) => (
       row.map((block, x) => (
         <Block
           clickable={clickable}
-          blockPressed={blockPressed}
+          // blockPressed={blockPressed}
           key={x}
           type={block[0]}
           ship={block[1]}

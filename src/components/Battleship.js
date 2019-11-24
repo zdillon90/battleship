@@ -136,15 +136,20 @@ function Battleship() {
     ];
     setGameStarted({
       status: true,
-      statusText: 'Enemy is Placing Ships',
+      statusText: 'Ships are placed, make your move!',
     });
     const shipList = placeShips(shipNames);
     routeShips(shipList);
   };
 
-  const clickBlock = id => {
-    console.log('Block Pressed!', id);
-  };
+  // const blockPressed = id => {
+  //   console.log(id);
+  //   if (id === '1') {
+  //     console.log('Red');
+  //   } else {
+  //     console.log('White');
+  //   }
+  // };
 
   // Render
   return (
@@ -153,7 +158,7 @@ function Battleship() {
         <Board
           clickable={gameStarted.status}
           board={board}
-          blockPressed={clickBlock}
+          // blockPressed={blockPressed}
         />
         <aside>
           {gameOver ? (
