@@ -142,15 +142,6 @@ function Battleship() {
     routeShips(shipList);
   };
 
-  // const blockPressed = id => {
-  //   console.log(id);
-  //   if (id === '1') {
-  //     console.log('Red');
-  //   } else {
-  //     console.log('White');
-  //   }
-  // };
-
   // Render
   return (
     <StyledBattleshipWrapper>

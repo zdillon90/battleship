@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyledBlock } from './styles/StyledBlock';
 import { StyledHitBlock } from './styles/StyledHitBlock';
+import { StyledMissBlock } from './styles/StyledMissBlock';
 import { SHIPS } from '../ships';
 
 function Block({ type, clickable, ship }) {
@@ -18,6 +19,8 @@ function Block({ type, clickable, ship }) {
   switch (select) {
     case 'hit':
       return <StyledHitBlock />;
+    case 'miss':
+      return <StyledMissBlock />;
     default:
       return (
         <StyledBlock
@@ -27,12 +30,10 @@ function Block({ type, clickable, ship }) {
           color={ship === 'clear' ? SHIPS[type].color : '128, 128, 128'}
           // TODO Remove this switch
           select={select}
+          disabled={clickable !== true}
         />
       );
   }
-  // <StyledHitBlock />
-  // <StyledMissBlock />
-  // Switch which block style is shown
 }
 
 export default Block;
