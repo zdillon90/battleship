@@ -20,7 +20,7 @@ function Battleship() {
     statusText: 'Press Start',
   });
   const [board, setBoard] = useState(createBoard());
-  // TODO: Add a mode here for Salvo variation
+  const [compBoard, setCompBoard] = useState(createBoard());
 
   // Game Functions
   const getRandomInt = (min, max) => {
@@ -123,7 +123,8 @@ function Battleship() {
       }
     }
     console.log(newBoard);
-    setBoard(newBoard);
+    return newBoard;
+    // setBoard(newBoard);
   };
 
   const startGame = () => {
@@ -139,7 +140,11 @@ function Battleship() {
       statusText: 'Ships are placed, make your move!',
     });
     const shipList = placeShips(shipNames);
-    routeShips(shipList);
+    const routedShips = routeShips(shipList);
+    setBoard(routedShips);
+    const compShipList = placeShips(shipNames);
+    const compRoutedShips = routeShips(compShipList);
+    setCompBoard(compRoutedShips);
   };
 
   // Render
@@ -147,7 +152,7 @@ function Battleship() {
     <StyledBattleshipWrapper>
       <StyledBattleship>
         <Board clickable={gameStarted.status} board={board} />
-        <Board clickable={false} board={board} />
+        <Board clickable={false} board={compBoard} />
         <aside>
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
