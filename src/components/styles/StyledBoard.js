@@ -12,4 +12,6 @@ export const StyledBoard = styled.div`
   width: 100%;
   max-width: 25vw;
   background: #0066cc;
+  margin-right: 20px;
+  /* margin-left: 20px; */
 `;

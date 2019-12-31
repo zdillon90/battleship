@@ -147,6 +147,7 @@ function Battleship() {
     <StyledBattleshipWrapper>
       <StyledBattleship>
         <Board clickable={gameStarted.status} board={board} />
+        <Board clickable={false} board={board} />
         <aside>
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />

@@ -29,6 +29,7 @@ function Block({ type, clickable, ship }) {
           type={type}
           color={ship === 'clear' ? SHIPS[type].color : '128, 128, 128'}
           // TODO Remove this switch
+          // color="0, 162, 255"
           select={select}
           disabled={clickable !== true}
         />
