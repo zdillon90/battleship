@@ -21,6 +21,7 @@ function Battleship() {
   });
   const [board, setBoard] = useState(createBoard());
   const [compBoard, setCompBoard] = useState(createBoard());
+  const [userTurn, setUserTurn] = useState(true);
 
   // Game Functions
   const getRandomInt = (min, max) => {
@@ -124,7 +125,13 @@ function Battleship() {
     }
     console.log(newBoard);
     return newBoard;
-    // setBoard(newBoard);
+  };
+
+  const compTurn = () => {
+    const randomRow = Math.floor(Math.random() * 10);
+    const randomCol = Math.floor(Math.random() * 10);
+    console.log(randomRow, randomCol);
+    setUserTurn(true);
   };
 
   const startGame = () => {
@@ -135,6 +142,7 @@ function Battleship() {
       'Submarine',
       'Patrol Boat',
     ];
+    // TODO: Make these strings into a list of objects
     setGameStarted({
       status: true,
       statusText: 'Ships are placed, make your move!',
@@ -151,7 +159,12 @@ function Battleship() {
   return (
     <StyledBattleshipWrapper>
       <StyledBattleship>
-        <Board clickable={gameStarted.status} board={board} />
+        <Board
+          clickable={gameStarted.status}
+          board={board}
+          setUserTurn={setUserTurn}
+          compTurn={compTurn}
+        />
         <Board clickable={false} board={compBoard} />
         <aside>
           {gameOver ? (
@@ -159,7 +172,9 @@ function Battleship() {
           ) : (
             <div>
               <Display text={`Status: ${gameStarted.statusText}`} />
-              <Display text="Shots" />
+              <Display
+                text={`Turn: ${userTurn === true ? 'User' : 'Computer'}`}
+              />
               <Display text="Score" />
             </div>
           )}

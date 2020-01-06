@@ -4,7 +4,7 @@ import { StyledHitBlock } from './styles/StyledHitBlock';
 import { StyledMissBlock } from './styles/StyledMissBlock';
 import { SHIPS } from '../ships';
 
-function Block({ type, clickable, ship }) {
+function Block({ type, clickable, ship, setUserTurn, compTurn }) {
   const [select, setSelect] = useState(null);
   const blockPressed = () => {
     console.log(type);
@@ -14,6 +14,8 @@ function Block({ type, clickable, ship }) {
     } else {
       setSelect('miss');
     }
+    setUserTurn(false);
+    compTurn();
   };
 
   switch (select) {
