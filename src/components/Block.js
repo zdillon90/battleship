@@ -4,7 +4,17 @@ import { StyledHitBlock } from './styles/StyledHitBlock';
 import { StyledMissBlock } from './styles/StyledMissBlock';
 import { SHIPS } from '../ships';
 
-function Block({ type, clickable, ship, setUserTurn, compTurn }) {
+function Block({
+  type,
+  clickable,
+  ship,
+  setUserTurn,
+  compTurn,
+  row,
+  col,
+  boardType,
+  compPickedBlocks,
+}) {
   const [select, setSelect] = useState(null);
   const blockPressed = () => {
     console.log(type);
@@ -15,8 +25,14 @@ function Block({ type, clickable, ship, setUserTurn, compTurn }) {
       setSelect('miss');
     }
     setUserTurn(false);
-    compTurn();
+    setTimeout(compTurn, 2000);
+    // ^ This can be a random number as well
   };
+
+  if (boardType === 'comp') {
+    // console.log(compPickedBlocks);
+    console.log(row, col);
+  }
 
   switch (select) {
     case 'hit':
@@ -30,7 +46,7 @@ function Block({ type, clickable, ship, setUserTurn, compTurn }) {
           onClick={e => blockPressed(e.target.attributes.type.value)}
           type={type}
           color={ship === 'clear' ? SHIPS[type].color : '128, 128, 128'}
-          // TODO Remove this switch
+          // TODO Remove this switch ^
           // color="0, 162, 255"
           select={select}
           disabled={clickable !== true}

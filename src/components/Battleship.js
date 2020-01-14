@@ -22,6 +22,7 @@ function Battleship() {
   const [board, setBoard] = useState(createBoard());
   const [compBoard, setCompBoard] = useState(createBoard());
   const [userTurn, setUserTurn] = useState(true);
+  const [compPickedBlocks, setCompPickedBlocks] = useState([]);
 
   // Game Functions
   const getRandomInt = (min, max) => {
@@ -130,7 +131,9 @@ function Battleship() {
   const compTurn = () => {
     const randomRow = Math.floor(Math.random() * 10);
     const randomCol = Math.floor(Math.random() * 10);
-    console.log(randomRow, randomCol);
+    const compPickBlock = { randomRow, randomCol };
+    console.log(compPickBlock);
+    setCompPickedBlocks(oldArray => [...oldArray, compPickBlock]);
     setUserTurn(true);
   };
 
@@ -164,8 +167,15 @@ function Battleship() {
           board={board}
           setUserTurn={setUserTurn}
           compTurn={compTurn}
+          boardType="user"
         />
-        <Board clickable={false} board={compBoard} />
+        <Board
+          clickable={false}
+          board={compBoard}
+          compTurn={compTurn}
+          compPickedBlocks={compPickedBlocks}
+          boardType="comp"
+        />
         <aside>
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
