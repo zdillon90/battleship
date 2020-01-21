@@ -85,7 +85,7 @@ function Battleship() {
     const shipObjects = [];
     const blockCheck = [];
     for (let s = 0; s < shipNames.length; s += 1) {
-      console.log(shipNames[s]);
+      // console.log(shipNames[s]);
       const ship = makeShip(shipNames[s]);
       const currentShipLetter = shipNames[s].substring(0, 1);
       ship.blocks.forEach(block => {
@@ -99,7 +99,7 @@ function Battleship() {
             shipBlock.row === blockCheck[i].row &&
             shipBlock.colum === blockCheck[i].colum
           ) {
-            console.log('Block taken up');
+            // console.log('Block taken up');
             ship.blocked = true;
           }
         }
@@ -114,8 +114,8 @@ function Battleship() {
   };
 
   const routeShips = shipList => {
-    console.log(board);
-    console.log(shipList);
+    // console.log(board);
+    // console.log(shipList);
     const newBoard = createBoard();
     for (let s = 0; s < shipList.length; s += 1) {
       for (let b = 0; b < shipList[s].blocks.length; b += 1) {
@@ -124,14 +124,14 @@ function Battleship() {
         newBoard[blockRow][blockColum] = [1, shipList[s].name];
       }
     }
-    console.log(newBoard);
+    // console.log(newBoard);
     return newBoard;
   };
 
   const compTurn = () => {
-    const randomRow = Math.floor(Math.random() * 10);
-    const randomCol = Math.floor(Math.random() * 10);
-    const compPickBlock = { randomRow, randomCol };
+    const row = Math.floor(Math.random() * 10);
+    const col = Math.floor(Math.random() * 10);
+    const compPickBlock = { row, col };
     console.log(compPickBlock);
     setCompPickedBlocks(oldArray => [...oldArray, compPickBlock]);
     setUserTurn(true);
