@@ -11,30 +11,37 @@ function Board({
   boardType,
   compPickedBlocks,
 }) {
-  // Need to move com logic here to pass to the right blocks
+  // Comp board needs to be it's own component
+
+  console.log(compPickedBlocks.length);
+
+  debugger;
+
   return (
     <StyledBoard width={board[0].length} height={board.length}>
       {board.map((row, i) =>
         row.map((block, x) => {
-          if (
-            // i === compPickedBlocks[i].row &&
-            // x === compPickedBlocks[i].col &&
-            boardType === 'comp'
-          ) {
-            return (
-              <Block
-                clickable={clickable}
-                row={i}
-                col={x}
-                key={x}
-                type={block[0]}
-                ship={block[1]}
-                setUserTurn={setUserTurn}
-                compTurn={compTurn}
-                boardType={boardType}
-                compPickedBlocks={compPickedBlocks}
-              />
-            );
+          if (compPickedBlocks.length >= 1) {
+            if (
+              // i === compPickedBlocks[x].col &&
+              // x === compPickedBlocks[x].row &&
+              boardType === 'comp'
+            ) {
+              return (
+                <Block
+                  clickable={clickable}
+                  row={i}
+                  col={x}
+                  key={x}
+                  type={block[0]}
+                  ship={block[1]}
+                  setUserTurn={setUserTurn}
+                  compTurn={compTurn}
+                  boardType={boardType}
+                  // compPickedBlocks={compPickedBlocks}
+                />
+              );
+            }
           }
           return (
             <Block
@@ -47,7 +54,7 @@ function Board({
               setUserTurn={setUserTurn}
               compTurn={compTurn}
               boardType={boardType}
-              compPickedBlocks={compPickedBlocks}
+              // compPickedBlocks={compPickedBlocks}
             />
           );
         })

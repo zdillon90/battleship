@@ -4,17 +4,7 @@ import { StyledHitBlock } from './styles/StyledHitBlock';
 import { StyledMissBlock } from './styles/StyledMissBlock';
 import { SHIPS } from '../ships';
 
-function Block({
-  type,
-  clickable,
-  ship,
-  setUserTurn,
-  compTurn,
-  row,
-  col,
-  boardType,
-  compPickedBlocks,
-}) {
+function Block({ type, clickable, ship, setUserTurn, compTurn }) {
   const [select, setSelect] = useState(null);
   const blockPressed = () => {
     if (type === 1) {

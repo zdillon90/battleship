@@ -167,6 +167,7 @@ function Battleship() {
           board={board}
           setUserTurn={setUserTurn}
           compTurn={compTurn}
+          compPickedBlocks={compPickedBlocks}
           boardType="user"
         />
         <Board
