@@ -18,38 +18,6 @@ function Block({ type, clickable, ship, setUserTurn, compTurn }) {
     // ^ This can be a random number as well
   };
 
-  // if (boardType === 'comp') {
-  //   // console.log(row, col);
-  //   // console.log(compPickedBlocks);
-  //   // need to check to see if row is the first number in the object
-  //   // and need to check to see if col is the second number in the object
-  //   // const foundRow = compPickedBlocks.some(e => e.randRow === row);
-  //   // const foundCol = compPickedBlocks.some(e => e.randCol === col);
-  //   // if (foundRow === true && foundCol === true) {
-  //   //   console.log(`Block found row: ${row} col: ${col}`);
-  //   // }
-
-  //   for (let i = 0; i < compPickedBlocks.length; i += 1) {
-  //     // console.log(compPickedBlocks[i]);
-  //     if (
-  //       row === compPickedBlocks[i].row &&
-  //       col === compPickedBlocks[i].col &&
-  //       type === 0
-  //     ) {
-  //       console.log(`Block found "Miss" {row: ${row} col: ${col}}`);
-  //       // setSelect('miss');
-  //     } else if (
-  //       row === compPickedBlocks[i].row &&
-  //       col === compPickedBlocks[i].col &&
-  //       type === 1
-  //     ) {
-  //       console.log(`Block found "Hit" {row: ${row} col: ${col}}`);
-  //     } else {
-  //       console.log('nothing');
-  //     }
-  //   }
-  // }
-
   if (select === 'hit') {
     return <StyledHitBlock />;
   }

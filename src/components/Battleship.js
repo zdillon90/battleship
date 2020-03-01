@@ -9,6 +9,7 @@ import {
 
 // Components
 import Board from './Board';
+import CompBoard from './CompBoard';
 import Display from './Display';
 import StartButton from './StartButton';
 
@@ -170,13 +171,18 @@ function Battleship() {
           compPickedBlocks={compPickedBlocks}
           boardType="user"
         />
-        <Board
+        <CompBoard
+          clickable={false}
+          board={compBoard}
+          compPickedBlocks={compPickedBlocks}
+        />
+        {/* <Board
           clickable={false}
           board={compBoard}
           compTurn={compTurn}
           compPickedBlocks={compPickedBlocks}
           boardType="comp"
-        />
+        /> */}
         <aside>
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
