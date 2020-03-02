@@ -4,7 +4,39 @@ import { StyledHitBlock } from './styles/StyledHitBlock';
 import { StyledMissBlock } from './styles/StyledMissBlock';
 import { SHIPS } from '../ships';
 
-function CompBlock({ type, clickable, ship }) {
+function CompBlock({ type, clickable, ship, row, col, compPickedBlocks }) {
+  // const [check, setCheck] = useState(null);
+  const isEqual = (obj1, obj2) => {
+    const obj1Keys = Object.keys(obj1);
+    const obj2Keys = Object.keys(obj2);
+
+    if (obj1Keys.length !== obj2Keys.length) {
+      return false;
+    }
+
+    for (const objKey of obj1Keys) {
+      if (obj1[objKey] !== obj2[objKey]) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  const coordinateCheck = { row, col };
+  let check = false;
+  // ^^^ Every time that this loops through it resets
+  compPickedBlocks.forEach(compBlock => {
+    // setCheck(isEqual(compBlock, coordinateCheck));
+    check = isEqual(compBlock, coordinateCheck);
+    console.log(check);
+  });
+  if (check && type === 1) {
+    return <StyledHitBlock />;
+  }
+  if (check && type === 0) {
+    return <StyledMissBlock />;
+  }
   return (
     <StyledBlock
       clickable={clickable}
