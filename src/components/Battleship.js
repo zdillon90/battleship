@@ -149,7 +149,8 @@ function Battleship() {
     // TODO: Make these strings into a list of objects
     setGameStarted({
       status: true,
-      statusText: 'Ships are placed, make your move!',
+      statusText:
+        'Ships are placed, make your move! Hunt for ships on the left board.',
     });
     const shipList = placeShips(shipNames);
     const routedShips = routeShips(shipList);
