@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { StyledBlock } from './styles/StyledBlock';
 import { StyledHitBlock } from './styles/StyledHitBlock';
 import { StyledMissBlock } from './styles/StyledMissBlock';
-import { SHIPS } from '../ships';
+// import { SHIPS } from '../ships';
 
-function Block({ type, clickable, ship, setUserTurn, compTurn }) {
+function Block({ type, clickable, setUserTurn, compTurn }) {
   const [select, setSelect] = useState(null);
   const blockPressed = () => {
     if (type === 1) {
@@ -13,8 +13,8 @@ function Block({ type, clickable, ship, setUserTurn, compTurn }) {
       setSelect('miss');
     }
     setUserTurn(false);
-    compTurn();
-    // setTimeout(compTurn, 100);
+    // compTurn();
+    setTimeout(compTurn, 2000);
     // ^ This can be a random number as well
   };
 
@@ -29,9 +29,9 @@ function Block({ type, clickable, ship, setUserTurn, compTurn }) {
       clickable={clickable}
       onClick={e => blockPressed(e.target.attributes.type.value)}
       type={type}
-      color={ship === 'clear' ? SHIPS[type].color : '128, 128, 128'}
+      // color={ship === 'clear' ? SHIPS[type].color : '128, 128, 128'}
       // TODO Remove this switch ^
-      // color="0, 162, 255"
+      color="0, 162, 255"
       select={select}
       disabled={clickable !== true}
     />

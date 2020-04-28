@@ -192,7 +192,6 @@ function Battleship() {
               <Display
                 text={`Turn: ${userTurn === true ? 'User' : 'Computer'}`}
               />
-              <Display text="Score" />
             </div>
           )}
           <StartButton clicked={gameStarted.status} callback={startGame} />

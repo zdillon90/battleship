@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyledBoard } from './styles/StyledBoard';
 import CompBlock from './CompBlock';
-import { StyledHitBlock } from './styles/StyledHitBlock';
-import { StyledMissBlock } from './styles/StyledMissBlock';
 
 function CompBoard({ board, clickable, compPickedBlocks }) {
   console.log(compPickedBlocks);
